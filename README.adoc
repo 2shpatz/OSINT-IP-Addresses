@@ -1,0 +1,44 @@
+= OSINT IP Data Collector
+
+== Summary
+This projects implement a containerized system, that performs basic OSINT (Open Source Intelligence) on a given IP Address or Addresses.
+The Data Collector Server listens to RestAPI commands asynchronously and retrieves the collected data.
+Can handle several requests in parallel. 
+
+== APIs
+The application listens on port 5555 (by default, can be change via the docker-compose.yml file)
+for these APIs
+
+=== /<ip_address>
+Retrieves the ip address data for all the given IP API servers (also configured via the docker-compose.yml)
+the app will keep the data for the requested IP in the cache for 1 hour.
+
+
+the default IP API servers are:
+----
+'IP_APIS={"ip-api" : {"url": "http://ip-api.com/json", "resp_time": 1},
+        "bgview": {"url": "https://api.bgpview.io/ip", "resp_time": 2}}'
+----
+
+...
+
+== Running the application
+
+To configure the application use the compose file
+
+and run it with:
+----
+docker compose up
+----
+the compose file will build the containerized application and run it
+
+Use this command to retrieve the IP data:
+----
+curl http://localhost:5555/<ip_address>
+----
+
+or a preferred restapi application (exp. Postman)
+
+== TBD / TBI
+
+* use the grequests package to send async requests
