@@ -2,6 +2,8 @@ import os
 import logging
 from flask import Flask, jsonify
 from flask_caching import Cache
+import asyncio
+
 from Data_Collector.data_collector import DataCollector
 
 logging.basicConfig(level=logging.INFO)
@@ -20,7 +22,7 @@ class App(DataCollector):
         @staticmethod
         @self.cache.cached(timeout=3600)  # Cache for 3600 seconds (1 hour)
         def get_ip_response(ip):
-            return self.create_ip_response(ip)
+            return asyncio.run(self.create_ip_response(ip))
         
         self.app.add_url_rule('/<ip>', 'get_ip_response', get_ip_response)
         
