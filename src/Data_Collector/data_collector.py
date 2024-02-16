@@ -64,7 +64,7 @@ class DataCollector():
         logging.info("get_ip_server_data return: %s", ip_server_data)
         return ip_server_data
 
-    def create_ip_response(self, ip):
+    async def create_ip_response(self, ip):
         try:
             ip_address(ip)
         except ValueError as err:
