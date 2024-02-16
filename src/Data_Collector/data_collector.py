@@ -5,6 +5,7 @@ import json
 
 from enum import Enum
 from flask import jsonify
+from flask_caching import Cache
 
 from ipaddress import ip_address
 
@@ -63,7 +64,6 @@ class DataCollector():
         logging.info("get_ip_server_data return: %s", ip_server_data)
         return ip_server_data
 
-    
     def create_ip_response(self, ip):
         try:
             ip_address(ip)

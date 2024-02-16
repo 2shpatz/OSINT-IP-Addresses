@@ -5,8 +5,8 @@ services:
     image: osint-ip-addresses-data_collector:latest
     environment:
       - APP_PORT=5000
-      - 'IP_SERVERS={"url": "http://ip-api.com/json","resp_time": 1}'
-    network_mode: "host"
+      # - 'IP_SERVERS={"ip-api" :{"url": "http://ip-api.com/json", "resp_time": 1}}'
+    # network_mode: "host"
     ports: 
       - 5050:5000
     restart: always
