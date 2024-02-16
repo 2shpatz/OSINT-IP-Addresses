@@ -1,12 +1,14 @@
 version: "3"
 services:
   data_collector:
-    # build: .
-    image: osint-ip-addresses-data_collector:latest
+    build: .
+    # image: osint-ip-addresses-data_collector:latest
     environment:
       - APP_PORT=5000
-      # - 'IP_SERVERS={"ip-api" :{"url": "http://ip-api.com/json", "resp_time": 1}}'
-    # network_mode: "host"
+      - 'IP_APIS={"ip-api" : {"url": "http://ip-api.com/json", "resp_time": 1},
+                "bgview": {"url": "https://api.bgpview.io/ip", "resp_time": 2}}'
     ports: 
-      - 5050:5000
+      - 5555:5000
     restart: always
+
+    
