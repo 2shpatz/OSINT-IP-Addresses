@@ -18,13 +18,22 @@ class App(DataCollector):
         self.cache.init_app(self.app)
 
     def add_url_rules(self):
-        # add API rules 
+        # add API rules each request is handled asynchronously using asyncio.run
+
         @staticmethod
         @self.cache.cached(timeout=3600)  # Cache for 3600 seconds (1 hour)
-        def get_ip_response(ip):
-            return asyncio.run(self.create_ip_response(ip))
-        
-        self.app.add_url_rule('/<ip>', 'get_ip_response', get_ip_response)
+        def get_ip_response(ip_addresses):
+            # gets IP responses for all the given IP address (from the URL)
+            try:
+                ips_list = ip_addresses.split(',')
+                return asyncio.run(self.get_ips_data(ips_list))
+            except Exception as err:
+                logging.error(err)
+                return {"Error": str(err)}
+            
+        ############# create rules #############
+        self.app.add_url_rule('/<ip_addresses>', 'get_ip_response', get_ip_response)
+        ########################################
         
 
     def run_app(self):

@@ -9,7 +9,7 @@ Can handle several requests in parallel.
 The application listens on port 5555 (by default, can be change via the docker-compose.yml file)
 for these APIs
 
-=== /<ip_address>
+=== /<ip_addresses>
 Retrieves the ip address data for all the given IP API servers (also configured via the docker-compose.yml)
 the app will keep the data for the requested IP in the cache for 1 hour.
 
@@ -24,9 +24,10 @@ the default IP API servers are:
 
 == Running the application
 
-To configure the application use the compose file
+To configure the application use the compose file.
+You can set the application ports and the IP APIs servers
 
-and run it with:
+Run the application with:
 ----
 docker compose up
 ----
@@ -34,10 +35,16 @@ the compose file will build the containerized application and run it
 
 Use this command to retrieve the IP data:
 ----
-curl http://localhost:5555/<ip_address>
+curl http://localhost:<app_port>/<ip_address>,<ip_address>,...
 ----
 
 or a preferred restapi application (exp. Postman)
+
+exp.
+----
+curl http://localhost:5555/176.228.193.161,176.228.193.163
+----
+
 
 == TBD / TBI
 
