@@ -1,3 +1,6 @@
+#!/bin/bash
+# use to run the server localy
+
 function install_dependencies
 {
     sudo apt-get update -y
