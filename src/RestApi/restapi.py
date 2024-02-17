@@ -40,4 +40,4 @@ class App(DataCollector):
         # run the flask application for listening to HTTP requests
         logging.info("starting RestApi server")
         self.add_url_rules()
-        self.app.run(debug=True, host='0.0.0.0', port=self.app_port)
+        self.app.run(debug=False, host='0.0.0.0', port=self.app_port)

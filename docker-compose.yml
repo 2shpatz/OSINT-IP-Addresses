@@ -2,7 +2,7 @@ version: "3"
 services:
   data_collector:
     build: .
-    # image: osint-ip-addresses-data_collector:latest
+    image: osint-ip-addresses-data_collector:latest
     environment:
       - APP_PORT=5000
       - 'IP_APIS={"ip-api" : {"url": "http://ip-api.com/json", "resp_time": 1},

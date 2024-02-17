@@ -24,6 +24,10 @@ the default IP API servers are:
 
 == Running the application
 
+=== Requirements 
+* Docker Engine
+
+=== Docker Compose
 To configure the application use the compose file.
 You can set the application ports and the IP APIs servers
 
@@ -31,7 +35,15 @@ Run the application with:
 ----
 docker compose up
 ----
-the compose file will build the containerized application and run it
+the compose file will build the containerized application and run it.
+
+[NOTE]
+====
+On first run the compose will try to pull the image without success, and then build the image.
+On the next runs the compose will use the built image and will start quickly
+====
+
+
 
 Use this command to retrieve the IP data:
 ----
